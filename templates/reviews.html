@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Отзывы — Гибкий клинкер{% endblock %}
+{% block content %}
+<section class="page-top"><div class="wrap">
+  <div class="rv-head">
+    <div class="sec-h" style="margin:0"><small>Мнения клиентов</small><h2>Отзывы</h2></div>
+    <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+      <div class="avg" id="avg" hidden><b id="avg-n">0</b><div><div class="stars" id="avg-s"></div><span id="avg-c"></span></div></div>
+      <button class="btn fill" type="button" data-open-review>Оставить отзыв</button>
+    </div>
+  </div>
+  <div class="rv-list" id="rv-list"></div>
+</div></section>
+
+<dialog id="rv-dialog" data-wa="{{ site.wa1 }}" data-max="{{ max_len }}">
+  <div class="modal">
+    <button class="x" type="button" data-close aria-label="Закрыть">×</button>
+    <div id="rv-form-box">
+      <h2>Ваш отзыв</h2>
+      <p class="lead">Расскажите, как вам клинкер. Это займёт минуту.</p>
+      <form id="rv-form" novalidate>
+        <div class="fld">
+          <label for="rv-name">ФИО</label>
+          <input type="text" id="rv-name" maxlength="80" placeholder="Например: Магомед Ахмадов" autocomplete="name">
+          <div class="err" id="err-name"></div>
+        </div>
+        <div class="fld">
+          <span class="lbl">Оценка от 1 до 10</span>
+          <div class="pick" id="pick" role="radiogroup" aria-label="Оценка"></div>
+          <div class="err" id="err-rating"></div>
+        </div>
+        <div class="fld">
+          <label for="rv-text">Отзыв</label>
+          <textarea id="rv-text" maxlength="{{ max_len }}" placeholder="Что понравилось, как прошла доставка и монтаж…"></textarea>
+          <div class="cnt" id="cnt">0 / {{ max_len }}</div>
+          <div class="err" id="err-text"></div>
+        </div>
+        <button class="btn fill" type="submit" style="width:100%">Отправить отзыв</button>
+      </form>
+    </div>
+    <div class="ok" id="rv-ok" hidden>
+      <div class="big">🌟</div>
+      <h3>Спасибо за отзыв!</h3>
+      <p>Он уже добавлен на странице. Чтобы его увидели и другие посетители, отправьте его нам в WhatsApp, мы опубликуем его на сайте.</p>
+      <div class="cta">
+        <a class="btn wa" id="rv-send" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a>
+        <button class="btn ghost" type="button" data-close>Закрыть</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<script type="application/json" id="rv-data">{{ reviews|tojson }}</script>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='reviews.js') }}"></script>{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Каталог — Гибкий клинкер{% endblock %}
+{% block content %}
+<section class="page-top"><div class="wrap">
+  <div class="sec-h"><small>16 цветов и оттенков</small><h2>Каталог</h2></div>
+  <div class="grid">{% for p in products %}{% include "_card.html" %}{% endfor %}</div>
+</div></section>
+{% endblock %}

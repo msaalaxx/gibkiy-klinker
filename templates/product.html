@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% set grout_cap = p.grout[0]|upper ~ p.grout[1:] %}
+{% block title %}Гибкий клинкер {{ p.name }} — {{ p.grout }} расшивка{% endblock %}
+{% block content %}
+{% set imgs = [1, 2, 3] %}
+{% set msg = "Здравствуйте! Хочу заказать гибкий клинкер %s, %s расшивка." % (p.name, p.grout) %}
+<div class="wrap pg">
+  <div class="gal">
+    <div class="thumbs">
+      {% for k in imgs %}<img src="{{ url_for('static', filename='img/p%d-%d.jpg' % (p.id, k)) }}" data-i="{{ loop.index0 }}" alt="">{% endfor %}
+      <img src="{{ url_for('static', filename='video/poster.jpg') }}" data-i="3" alt="Видео">
+    </div>
+    <div class="main">
+      <div class="sl" id="sl">
+        {% for k in imgs %}<img src="{{ url_for('static', filename='img/p%d-%d.jpg' % (p.id, k)) }}" alt="Гибкий клинкер {{ p.name }}">{% endfor %}
+        <video controls playsinline preload="none" poster="{{ url_for('static', filename='video/poster.jpg') }}" src="{{ url_for('static', filename='video/install.mp4') }}"></video>
+      </div>
+      <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <div class="info">
+    <h1>Гибкий клинкер {{ p.name }}</h1>
+    <p class="sub">{{ grout_cap }} расшивка. Лист 100×70 см</p>
+    <div class="price">
+      <div class="big">{{ price.kit }} ₽/м²</div>
+      <p>Комплект: клинкер, клей и финишное покрытие</p>
+      <p><span>Клинкер без клея и финиша</span><b>{{ price.plain }} ₽/м²</b></p>
+      <p><span>Клей, канистра 10 л</span><b>{{ price.glue }} ₽</b></p>
+      <p><span>Финишное покрытие, канистра 10 л</span><b>{{ price.finish }} ₽</b></p>
+    </div>
+    <div class="acts">
+      <a class="btn wa" href="{{ site.wa1 }}?text={{ msg|urlencode }}" target="_blank" rel="noopener">Заказать в WhatsApp</a>
+      <a class="btn" href="{{ site.tel }}">Позвонить</a>
+    </div>
+    <h2 style="font-size:22px;margin-bottom:8px">Характеристики</h2>
+    <table>
+      <tr><td>Название</td><td>Гибкий клинкер {{ p.name }}</td></tr>
+      <tr><td>Цвет расшивки</td><td>{{ grout_cap }}</td></tr>
+      <tr><td>Размер листа</td><td>100×70 см</td></tr>
+      <tr><td>Состав</td><td>90% мрамор</td></tr>
+      <tr><td>Срок службы</td><td>до 40 лет</td></tr>
+      <tr><td>Расшивка</td><td>Готовая, монтаж своими руками</td></tr>
+      <tr><td>Доставка</td><td>По всему СКФО</td></tr>
+      <tr><td>Рассрочка</td><td>Исламская, до 12 месяцев</td></tr>
+    </table>
+    <p class="note">Цвет расшивки можно заменить на любой другой по желанию покупателя.</p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='slider.js') }}"></script>{% endblock %}

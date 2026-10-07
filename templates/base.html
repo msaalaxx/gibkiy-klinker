@@ -1,0 +1,37 @@
+{% from "_icons.html" import ICO_WA, ICO_IG, LOGO %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  <meta name="description" content="{% block desc %}Гибкий клинкер из мрамора с готовой расшивкой. Первые и единственные дистрибьюторы на всём Северном Кавказе, исламская рассрочка до 12 месяцев.{% endblock %}">
+  <meta name="theme-color" content="#0e1013">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="{{ url_for('index') }}">{{ LOGO|safe }}<span>{{ site.name }}</span></a>
+  <nav>
+    <a href="{{ url_for('index') }}"{% if page == 'home' %} class="on"{% endif %}>Главная</a>
+    <a href="{{ url_for('catalog') }}"{% if page == 'cat' %} class="on"{% endif %}>Каталог</a>
+    <a href="{{ url_for('reviews') }}"{% if page == 'reviews' %} class="on"{% endif %}>Отзывы</a>
+    <a href="{{ url_for('index') }}#contacts">Контакты</a>
+  </nav>
+</div></header>
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer><div class="wrap">© {{ site.name }} · {{ site.domain }} · {{ site.address }}<br>Первые и единственные дистрибьюторы на всём Северном Кавказе</div></footer>
+<div class="fab">
+  <a class="i" href="{{ site.ig }}" target="_blank" rel="noopener" aria-label="Instagram">{{ ICO_IG|safe }}</a>
+  <a class="w" href="{{ site.wa1 }}" target="_blank" rel="noopener" aria-label="WhatsApp">{{ ICO_WA|safe }}</a>
+</div>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

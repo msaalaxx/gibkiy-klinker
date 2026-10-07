@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "_icons.html" import ICO_WA, ARR, CROWN %}
+{% block title %}Гибкий клинкер из мрамора — Грозный, доставка по Северному Кавказу{% endblock %}
+{% block content %}
+<div class="hero"><div class="wrap">
+  <div class="panel">
+    <span class="badge hero-in" style="--d:.1s"><i></i>Первые и единственные дистрибьюторы на всём Северном Кавказе</span>
+    <h1 class="hero-in" style="--d:.25s">Гибкий клинкер из мрамора <em>с готовой расшивкой</em></h1>
+    <p class="hero-in" style="--d:.4s">Монтаж своими руками, срок службы до 40 лет. Доставка по всему Северному Кавказу и исламская рассрочка до 12 месяцев.</p>
+    <div class="cta hero-in" style="--d:.55s">
+      <a class="btn fill" href="{{ url_for('catalog') }}">Смотреть каталог {{ ARR|safe }}</a>
+      <a class="btn wa" href="{{ site.wa1 }}" target="_blank" rel="noopener">{{ ICO_WA|safe }}Написать в WhatsApp</a>
+      <a class="link" href="{{ url_for('reviews') }}">Отзывы клиентов</a>
+    </div>
+  </div>
+</div><div class="scroll" aria-hidden="true"></div></div>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="stats">
+    <div><b>16</b><span>цветов и оттенков</span></div>
+    <div><b>40</b><span>лет срок службы</span></div>
+    <div><b>90%</b><span>мрамора в составе</span></div>
+    <div><b>12</b><span>месяцев рассрочки</span></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-h"><small>Преимущества</small><h2>Почему наш клинкер</h2></div>
+  <div class="adv">
+    <div class="star">{{ CROWN|safe }}<div><b>Первые и единственные дистрибьюторы на всём Северном Кавказе</b>Прямые поставки, доставка по всему СКФО и гарантия оригинального материала.</div></div>
+    <div><b>Готовая расшивка</b>Покупатель сам сделает монтаж, цвет расшивки можно заменить</div>
+    <div><b>90% мрамора</b>Лист 100×70 см</div>
+    <div><b>До 40 лет</b>Срок службы материала</div>
+    <div><b>16 цветов и оттенков</b>Огромный выбор цветовой гаммы</div>
+    <div><b>Доставка по СКФО</b>Привозим на объект по всему Северному Кавказу</div>
+    <div><b>Исламская рассрочка</b>До 12 месяцев на все товары</div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-h"><small>Каталог</small><h2>Популярные товары</h2></div>
+  <div class="grid">{% for p in featured %}{% include "_card.html" %}{% endfor %}</div>
+  <div class="more"><a class="btn fill" href="{{ url_for('catalog') }}">Весь каталог {{ ARR|safe }}</a></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-h"><small>Отзывы</small><h2>Что говорят клиенты</h2></div>
+  <div class="more" style="margin-top:0;text-align:left"><a class="btn" href="{{ url_for('reviews') }}">Читать и оставить отзыв {{ ARR|safe }}</a></div>
+</div></section>
+
+<section id="contacts"><div class="wrap">
+  <div class="sec-h"><small>Связь</small><h2>Контакты</h2></div>
+  <div class="contacts">
+    <div><b>Адрес</b><br>{{ site.address }}</div>
+    <div><b>Телефон и WhatsApp</b><br>
+      <a href="{{ site.tel }}">{{ site.phone }}</a><br>
+      <a href="{{ site.wa1 }}" target="_blank" rel="noopener">WhatsApp 1</a> ·
+      <a href="{{ site.wa2 }}" target="_blank" rel="noopener">WhatsApp 2</a><br>
+      <a href="{{ site.ig }}" target="_blank" rel="noopener">Instagram {{ site.ig_name }}</a>
+    </div>
+  </div>
+</div></section>
+{% endblock %}

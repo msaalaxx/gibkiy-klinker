@@ -1,0 +1,4 @@
+<a class="card" href="{{ url_for('product', pid=p.id) }}">
+  <div class="ph"><img loading="lazy" src="{{ url_for('static', filename='t/p%d.jpg' % p.id) }}" alt="Гибкий клинкер {{ p.name }}, {{ p.grout }} расшивка"></div>
+  <div class="tx"><h3>{{ p.name }}</h3><small>{{ p.grout }} расшивка</small><div class="pr">{{ price.kit }} ₽/м²</div></div>
+</a>
